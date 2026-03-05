@@ -1,28 +1,25 @@
 pipeline {
-agent anystages {stage('Build’) {
-steps {
-echo 'Building Website...’}
-}stage('Test’) {
-steps {
-script {
-if (fileExists('index.html')) {
-echo 'Test Passed: index.html exists’
-} else {
-error 'Test Failed: index.html not found’}
-}
-}
-}
-pipeline {
-agent anystages {stage('Build’) {
-steps {
-echo 'Building Website...’}
-}stage('Test’) {
-steps {
-script {
-if (fileExists('index.html')) {
-echo 'Test Passed: index.html exists’
-} else {
-error 'Test Failed: index.html not found’}
-}
-}
+    agent any
+
+    stages {
+
+        stage('Clone Repository') {
+            steps {
+                git 'https://github.com/NukanaboinaRajaRajeswari/web-page.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo "Building Web Page Project"
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo "Website Deployment Successful"
+            }
+        }
+
+    }
 }
